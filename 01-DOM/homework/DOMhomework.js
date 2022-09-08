@@ -126,9 +126,12 @@ function displayToDos() {
 
 function addToDo() {
   // Tu código acá:
-  let inputTodo = document.querySelector("#toDoInput").value;
+  let inputTodo = document.getElementById("toDoInput").value;
   let newTodo = new ToDo(inputTodo);
-  toDoItems.push(newTodo);
+  if(inputTodo !== ""){
+    toDoItems.push(newTodo);
+  }
+
   inputTodo.innerHTML = "";
   displayToDos();
 }
@@ -161,7 +164,7 @@ function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
   const index = event.target.id;
   // Tu código acá:
-  toDoItems[index.completeToDo()]
+  toDoItems[index].completeToDo()
   
   
   displayToDos()
