@@ -11,7 +11,9 @@
     p {
       padding:0 15px;
     }
-
+    #headerImg{
+      border-radius: 20px;
+    }
   }
 
   .music-images {
@@ -25,6 +27,19 @@
       border-radius: 20px;
       height: 100%;
     }
+
+    .tecnologia, .ondas{
+      @media @phone {
+        display: none;
+      }
+    }
+
+    .auricular{
+      @media @phone {
+        width: 100%;
+      }
+    }
+
   }
 
   .musica-nueva {
@@ -46,9 +61,16 @@
     display: flex;
     justify-content: center;
 
+    @media @phone {
+      .flex(column-reverse);
+      padding: 15px;
+    }
+
     .actual-text {
       width: 50%;
-
+      @media @phone {
+        width: 90%;
+      }
       h3 {
         margin-bottom: 10px;
       }
@@ -58,13 +80,19 @@
       }
 
       .btn {
+        .myBtn();
+        @media @phone {
+          width: 100%;
+        }
       }
     }
 
     .actual-img {
       width: 46%;
       margin-left: 4%;
-
+      @media @phone {
+        width: 100%;
+      }
       img {
         width: 100%;
         height: auto;
