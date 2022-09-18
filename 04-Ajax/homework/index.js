@@ -1,50 +1,34 @@
-const lista = document.getElementById("lista")
-$("#boton").one("click", function () {
-    $.get("http://localhost:5000/amigos",
-        function (amigos) {
-            amigos.forEach(element => {
-                let li = document.createElement("li")
-                li.textContent = element["name"]
-                lista.appendChild(li)
-            });
-        }
-    );
+
+let showFriends = () => {
+    const lista = $("#lista");
+    lista.empty();
+    $.get("http://localhost:5000/amigos", (response) => {
+        response.forEach(element => {
+            let li = document.createElement("li");
+            li.textContent = element["name"];
+            lista.append(li);
+        });
+    });
+};
+
+$("#boton").click(showFriends);
+
+$("#search").click( () => {
+    let valor = $("#input").val();
+    $.get(`http://localhost:5000/amigos/${valor}`, (response) => {
+        $("#amigo").text(response.name);
+    });
 });
 
 
-
-const friendFound = document.getElementById("amigo")
-
-$("#search").click(function () {
-    let valor = document.getElementById("input").value;
-    if (valor > 0 && valor <= 6) {
-        $.get("http://localhost:5000/amigos/" + valor,
-            function (amigo) {
-                friendFound.textContent = amigo.name
-            }
-        );
-    } else {
-        friendFound.textContent = "No se han encontrado resultados"
-    }
-
-
-
-});
-
-
-$("#delete").click(function () {
-    let valor = document.getElementById("inputDelete").value;
-    if (valor) {
+$("#delete").click(() => {
+    let valor = $("#inputDelete").val();
         $.ajax({
             type: "DELETE",
-            url: "http://localhost:5000/amigos/" + valor,
-            success: function (response) {
-                response = document.getElementById("success");
-                response.textContent = "Amigo eliminado con exito";
+            url: `http://localhost:5000/amigos/${valor}`,
+            success: () =>{
+                $("#success").text("Amigo eliminado con exito");
             }
-        }
-        );
-    }
-
+        });
 });
 
