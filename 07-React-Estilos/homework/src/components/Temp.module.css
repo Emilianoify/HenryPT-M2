@@ -1,0 +1,17 @@
+.temp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.label, .value{
+    font-size: 14px;
+    font-weight:500;
+    text-align: left;
+}
+
+.value{
+    font-size: 17px;
+    font-weight: 300;
+}
