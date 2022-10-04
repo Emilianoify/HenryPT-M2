@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import styled from './Search.module.css'
 
-export default function SearchBar({onSearch}) {
+export default function SearchBar({onSearch, className}) {
   return (
-    <form onSubmit={(e) => {
+    <form className= {className} onSubmit={(e) => {
       e.preventDefault();
-      onSearch("Cairns");
+      let inputValue = document.getElementById('inputSearch');
+      onSearch(inputValue.value);
+      inputValue = "";
     }}>
-      <input
+      <input id="inputSearch" className= {[styled.search, styled.borde].join(" ")}
         type="text"
         placeholder="Ciudad..."
       />
-      <input type="submit" value="Agregar" />
+      <input className= {[styled.button, styled.borde].join(" ")} type="submit" value="Agregar" />
     </form>
   );
 }

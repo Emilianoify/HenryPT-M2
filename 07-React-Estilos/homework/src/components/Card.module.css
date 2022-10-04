@@ -29,6 +29,7 @@
     border-radius: 3px;
     top: 2px;
     right: 5px;
+    color: white;
 }
 
 .closeButton:hover{

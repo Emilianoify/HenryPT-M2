@@ -5,7 +5,11 @@ import './Nav.css';
 
 function Nav({onSearch}) {
   return (
-    <div>Nav</div>
+    <div className='nav'>
+      <img className='loguito' src={Logo} alt="logo"/>
+      <span>Wheater App</span>
+      <SearchBar className='buscador' onSearch={onSearch}/>
+    </div>
   );
 };
 
