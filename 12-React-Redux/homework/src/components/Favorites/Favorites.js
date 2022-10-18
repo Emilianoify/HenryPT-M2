@@ -1,22 +1,39 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { removeMovieFavorite } from "../../actions";
 import './Favorites.css';
-
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 export class ConnectedList extends Component {
+
+  movieIsFavorite(imdbID){
+    return this.props.favorites.find((fav) => fav.id === imdbID) ? true : false;
+  }
 
   render() {
     return (
       <div>
         <h2>Películas Favoritas</h2>
         <ul>
-          {/* Aqui deberias poner tu lista de peliculas! */}
+          {this.props.favorites.map((movie) => (
+            <li key={movie.imdbID}>
+              <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+              <button onClick={() => this.props.remove(movie.id)}>
+                 {this.movieIsFavorite(movie.id) ? <AiFillHeart/> : <AiOutlineHeart/>}</button>
+            </li>))
+          }
         </ul>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  favorites: state.moviesFavourites
+})
 
+const mapDispatchToProps = (dispatch) => ({
+  remove: (id) => dispatch(removeMovieFavorite(id))
+})
 
-export default (ConnectedList);
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectedList);
