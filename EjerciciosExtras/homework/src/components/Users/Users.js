@@ -14,7 +14,7 @@ export class Users extends Component {
       <div className="details">
         <h4 className="title">Usuarios del blog</h4>   
         <ul>
-        {this.props.users.map((user) => <li key={users.id}>
+        {this.props.users.map((user) => <li key={user.id}>
         <Link to={`/users/${user.id}/posts`} className="button">Posts</Link>
         </li>)}
         </ul>    
@@ -35,8 +35,9 @@ export class Users extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  users: state.users,
+    users: state.users,
 })
+
 
 export const mapDispatchToProps = (dispatch) => ({
   getAllUsers: () => dispatch(getAllUsers()),
